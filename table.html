@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/stylesheet1.css" rel="stylesheet" type="text/css" />
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+$(document).ready(function(){
+var table_number = 0 ;
+$("table tr").each(function(){
+$(this).find("td").first().text(table_number);
+table_number ++;
+//$(this).find("td").text($(this).index());
+//alert($(this).index());
+});
+//alert($(".index").index());
+
+
+//Slider js starts
+
+var slider_count = $(".slider ul li").length;
+var slider_width = $(".slider ul li").width();
+var slider_height = $(".slider ul li").height();
+var slider_ui_width = slider_count * slider_width;
+
+//console.log(slider_ui_width);
+
+$("#slider-box").css({width:slider_width , height:slider_height});
+$("#slider-box ul").css({width:slider_ui_width, marginLeft:-slider_width});
+
+
+
+
+  $('#checkbox').change(function(){
+   setInterval(function () {
+        moveRight();
+   }, 3000);
+  });
+  
+	var slideCount = $('#slider ul li').length;
+	var slideWidth = $('#slider ul li').width();
+	var slideHeight = $('#slider ul li').height();
+	var sliderUlWidth = slideCount * slideWidth;
+	//console.log(sliderUlWidth);	
+	$('#slider').css({ width: slideWidth, height: slideHeight });
+	
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+	
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+        $('#slider ul').animate({
+            left: + slideWidth
+        }, 200, function () {
+            $('#slider ul li:last-child').prependTo('#slider ul');
+            $('#slider ul').css('left', '');
+		});
+    };
+
+    function moveRight() {
+        $('#slider ul').animate({
+            left: - slideWidth
+        }, 200, function () {
+            $('#slider ul li:first-child').appendTo('#slider ul');
+            $('#slider ul').css('left', '');
+		});
+    };
+
+    $('a.control_prev').click(function () {
+        moveLeft();
+    });
+
+    $('a.control_next').click(function () {
+        moveRight();
+    });
+
+// Accordian js starts
+
+
+
+var i = 1;
+$("#accordion div").each(function(){
+	$(this).attr("id","tab_"+i);
+	i++;
+	//alert(i);
+});
+
+if($(window).width() < 767) {
+//alert($(window).width());
+$("#accordion div").hide();
+$("#accordion a").click(function(e){
+	//$(this).next().slideDown();
+	e.preventDefault();
+	var test = $(this).next().attr("id");
+	$("#accordion div").slideUp();
+	
+	if ($("#"+test).is(":visible")) {
+		$("#"+test).slideUp();
+	}else {
+		$("#"+test).slideDown();
+		//$("#accordion div").slideUp();
+	}
+});
+
+}
+
+
+
+
+//zoom-slider
+
+var ul = document.getElementById("foo");
+var items = ul.getElementsByTagName("li");
+for (var i = 0; i < 6 ; ++i) {
+  // do something with items[i], which is a <li> element
+  //items++
+}
+
+
+var slider_number = 1;
+
+//var txt_number = $(".zoom-slider ul li").text("slider"+slider_number)
+$(".zoom-slider ul li").each(function(){
+	$(this).attr('id','test'+slider_number);
+	//$(".zoom-slider ul li a").next().text("silder "+slider_number);
+	slider_number++;
+	//console.log(slider_number);
+});
+
+var elementCount = $(".zoom-slider ul li").length;
+console.log('Total li: ', elementCount);
+
+var elementWidth = $(".zoom-slider ul li").width();
+console.log('Total li width: ', elementWidth);
+
+var eleCountFive = elementWidth *1;
+console.log('Total five li width: ', eleCountFive);
+
+var elementTotalWidth = elementCount * elementWidth;
+
+$(".zoom-slider").width(eleCountFive);
+$(".zoom-slider ul").width(elementTotalWidth);
+
+$(".zoom-slider ul li:last").prependTo(".zoom-slider ul");
+ 
+$(".zoom-slider ul").css({marginLeft:-elementWidth}); 
+
+function zmovenext() {
+	$(".zoom-slider ul").animate({
+		left: - elementWidth
+		}, 600 , function() {
+			$(".zoom-slider ul li:first").appendTo(".zoom-slider ul");
+			$(".zoom-slider ul").css('left','');
+		})
+}
+
+function zmoveright() {
+	$(".zoom-slider ul").animate({
+		left: +elementWidth	
+	}, 600, function() {
+		$(".zoom-slider ul li:last").prependTo(".zoom-slider ul");
+		$(".zoom-slider ul").css('left','');	
+	});
+}
+
+
+$(".z-next").click(function(){
+	zmovenext();
+});
+
+$(".z-prev").click(function(){
+	zmoveright();
+});
+
+// Select All Checkbox JS 
+
+/*$(document).ready(function() {
+    $('#selecctall').click(function() {  //on click 
+        if(this.checked) { // check select status
+            $('.checkbox1').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"               
+            });
+        }else{
+            $('.checkbox1').each(function() { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+            });         
+        }
+    });
+    
+});
+
+$(document).ready(function(){ 
+    $("#selecctall").change(function(){
+      $(".checkbox1").prop('checked', $(this).prop("checked"));
+      });
+});
+
+
+$(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').attr('checked', this.checked);
+    });
+
+    $('.selectedId').change(function () {
+        var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+        $('#selectall').attr("checked", check);
+		//console.log("select" , $('.selectedId').filter(":checked").length == $('.selectedId').length);
+    });
+	
+});*/
+
+$("#selectall").click(function(){
+	if($(".selectedId").prop("checked", false)) {
+		$(".selectedId").prop("checked", true);
+	} else {
+		$(".selectedId").prop("checked", false);
+	}
+	console.log($("#selectall").prop("checked", true));
+});
+
+$(".selectedId").click(function(){
+	$("#selectall").prop("checked", false);
+	
+});
+
+
+// Equal Height js
+
+function equalHeight() {
+	var secHeight = $(".innter-con").map(function(){
+		return $(this).height();
+	});
+	maxHeight = Math.max.apply(null, secHeight);
+	$(".innter-con").height(maxHeight);
+	console.log(maxHeight);
+}
+
+/*$(window).resize(resizeHeight);
+resizeHeight();
+$(window).bind(function() {
+
+})*/	
+$(window).resize(function(e){
+	equalHeight();	
+}).resize();
+
+equalHeight();
+
+});
+
+
+
+
+
+</script>
+<title>JQuery Practice</title>
+</head>
+<body>
+<table width="100%" border="1">
+        <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col" class="index">&nbsp;</th>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        </tr>
+        <tr>
+            <td >&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td >&nbsp;</td>
+        
+        </tr>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr><tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr><tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr><tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        </tr>
+    </table>
+<hr />
+
+<h1>Incredibly Basic Slider</h1>
+<div id="slider">
+  <a href="#" class="control_next">>></a>
+  <a href="#" class="control_prev"><</a>
+  <ul>
+    <li>SLIDE 1</li>
+    <li style="background: #aaa;">SLIDE 2</li>
+    <li>SLIDE 3</li>
+    <li style="background: #aaa;">SLIDE 4</li>
+    <li>SLIDE 5</li>
+    <li style="background: #aaa;">SLIDE 6</li>
+  </ul>  
+</div>
+
+<div class="slider_option">
+  <input type="checkbox" id="checkbox">
+  <label for="checkbox">Autoplay Slider</label>
+</div> 
+
+<hr />
+
+<div class="container">
+<h2>Accordion</h2>
+<div id="accordion">
+	<a href="https://www.google.com" target="_blank">accord 1</a>
+    <div>
+    	Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.
+    </div>
+    
+    <a href="https://www.google.com" target="_blank">accord 2</a>
+    <div>
+    	Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.
+    </div>
+    
+    <a href="https://www.google.com" target="_blank">accord 3</a>
+    <div>
+    	Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.
+    </div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="zoom-slider" id="foo">
+	<a class="z-prev" href="javascript:void(0)">&laquo;</a>
+    <a class="z-next" href="javascript:void(0)">&raquo;</a>
+    <ul>
+    	<li><a href="#">Slider 01</a></li>
+        <li><a href="#">Slider 02</a></li>
+        <li><a href="#">Slider 03</a></li>
+        <li><a href="#">Slider 04</a></li>
+        <li><a href="#">Slider 05</a></li>
+        <li><a href="#">Slider 06</a></li>
+    </ul>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container">
+	<h2>Select All JS</h2>
+	<div class="col-lg-12">
+    	<label><input id="selectall" type="checkbox"/> Select All</label>
+    </div>
+    <div class="test">
+    <div class="col-lg-12">
+    	
+        <label><input class="selectedId" type="checkbox" /> India</label>
+    </div>
+    <div class="col-lg-12">
+    	
+        <label><input class="selectedId" type="checkbox" /> Bharat</label>
+    </div>
+    <div class="col-lg-12">
+    	
+        <label> <input class="selectedId" type="checkbox" /> Hindustan</label>
+    </div>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div id="equal-height" class="equal-height">
+	<div class="container">
+    <h2>Equal Height</h2>
+    <hr />
+    	<div class="row">
+        	<div class="col-xs-4">
+            <div class="innter-con">
+            	<p>Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                </div>
+            </div>
+            <div class="col-xs-4">
+            <div class="innter-con">
+            	<p>Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                 <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome diplay the web page because your computer isn’t connected to the Internet.</p>
+               </div> 
+            </div>
+            <div class="col-xs-4">
+            <div class="innter-con">
+            	<p>Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p><p>Google Chrome display the web page because your computer isn’t connected to the Internet. Google Chrome can’t display the web page because your computer isn’t connected to the Internet.</p>
+                <p>Google Chrome display the web page because your computer isn’t connected to the Internet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

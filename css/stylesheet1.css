@@ -1,0 +1,148 @@
+@charset "utf-8";
+/* CSS Document */
+
+a.active {
+color:red !important;
+}
+.slider-box ul li {
+float:left;
+width:250px;
+width:200px;
+border:1px solid #ccc;
+list-style:none;
+}
+div#slider-box {
+overflow: hidden;
+width: 640px;
+margin: 0 auto;
+}
+.slider {
+overflow: hidden;
+width: 1500px;
+margin: 0 auto;
+}
+
+
+#slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  border-radius: 4px;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  list-style: none;
+}
+
+#slider ul li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 300px;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px;
+}
+
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.slider_option {
+  position: relative;
+  margin: 10px auto;
+  width: 160px;
+  font-size: 18px;
+}
+
+#accordion a {
+	display:block;
+	padding:15px;
+	background:#990000;
+	color:#fff;
+}
+
+#accordion div {
+	padding:15px;
+}
+.zoom-slider {
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	height:120px;
+}
+.zoom-slider ul {
+	padding:0px;
+	margin:0px;
+}
+.zoom-slider ul li {
+	float:left;
+	width:160px;
+	list-style:none;
+	position:relative;
+	height:120px;
+	background:#f7f7f7;
+}
+.zoom-slider ul li a {
+	position:absolute;
+	top:50%;
+	width:100%;
+	text-align:center;
+	transform:translateY(-50%);
+	text-decoration:none;
+}
+.zoom-slider .z-prev,
+.zoom-slider .z-next {
+	position:absolute;
+	top:40%;
+	z-index:9;
+	background:#333333;
+	color:#ffffff;
+	padding:6px 2px;
+	text-decoration:none;
+}
+.zoom-slider .z-prev {
+	left:0px;
+}
+.zoom-slider .z-next {
+	right:0px;
+}
+
+.innter-con {
+	border:1px solid #ccc;
+	padding:15px;
+}
